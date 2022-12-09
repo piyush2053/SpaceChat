@@ -58,9 +58,11 @@ textarea {
 }
 .incoming {
     background: #8F8BE8;
+    border-radius: 20px;
     color: #fff;  
 }
 .outgoing {
+    border-radius: 20px;
     background: #e9eafd;
     color: #787986;
     margin-left: auto;
