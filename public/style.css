@@ -67,6 +67,12 @@ textarea {
     color: #787986;
     margin-left: auto;
 }
+.joinedRoom {
+    border-radius: 20px;
+    background: #e9eafd;
+    color: #787986;
+    align-self: center;
+}
 .message h4 {
     position: absolute;
     top: -20px;

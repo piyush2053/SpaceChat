@@ -4,12 +4,14 @@ let textarea = document.querySelector('#textarea')
 let messageArea = document.querySelector('.message__area')
 do {
     name = prompt('Please enter your name: ')
+    appendJoined(name,'outgoing')
 } while(!name)
 
 textarea.addEventListener('keyup', (e) => {
     if(e.key === 'Enter') {
         sendMessage(e.target.value)
     }
+    
 })
 
 function sendMessage(message) {
@@ -27,6 +29,27 @@ function sendMessage(message) {
 
 }
 
+
+function appendJoined(name1){
+    let middleDiv = document.createElement('div')
+    let className = 'joinedRoom'
+    middleDiv.classList.add(className, 'message')
+
+    let markup = `
+        <p>Welcome to SpaceChat ${name1}</p>
+    `
+    middleDiv.innerHTML = markup
+    messageArea.appendChild(middleDiv)
+
+    let msg1 = {
+        user: "",
+        message: name1+ " Has joined the chat"
+    }
+
+    socket.emit('message', msg1)
+
+}
+
 function appendMessage(msg, type) {
     let mainDiv = document.createElement('div')
     let className = type
@@ -38,6 +61,7 @@ function appendMessage(msg, type) {
     `
     mainDiv.innerHTML = markup
     messageArea.appendChild(mainDiv)
+    
 }
 
 // Recieve messages 

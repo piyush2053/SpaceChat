@@ -1,27 +1,29 @@
 const express = require('express')
 const app = express()
 const http = require('http').createServer(app)
-
 const PORT = 3000
 
-http.listen(PORT, () => {
+var count = 0;
+
+http.listen(PORT, '0.0.0.0', () => {
     console.log(`Listening on port ${PORT}`)
 })
 
-app.get('/',(req,res)=>{
+
+app.get('/', (req, res) => {
     // res.send('hello')
-    res.sendFile('index.html' , { root : __dirname});
+    res.sendFile('index.html', { root: __dirname });
 })
 
 app.use(express.static(__dirname + '/public'))
 
 // Socket 
-const io = require('socket.io')(http)
+const io = require('socket.io')(http)  //Padding server -(http) to connect the Socket with Server
 
 io.on('connection', (socket) => {
-    console.log('Connected...')
+    count++;
+    console.log(count, "People in a room")
     socket.on('message', (msg) => {
         socket.broadcast.emit('message', msg)
     })
-
 })
