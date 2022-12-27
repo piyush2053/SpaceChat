@@ -15,6 +15,11 @@ app.get('/', (req, res) => {
     res.sendFile('index.html', { root: __dirname });
 })
 
+app.get('/1', (req, res) => {
+    res.send('hello')
+    // res.sendFile('index.html', { root: __dirname });
+})
+
 app.use(express.static(__dirname + '/public'))
 
 // Socket 
